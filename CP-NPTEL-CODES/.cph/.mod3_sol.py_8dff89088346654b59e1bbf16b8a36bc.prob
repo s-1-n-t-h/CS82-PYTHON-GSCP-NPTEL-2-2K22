@@ -1,0 +1,1 @@
+{"name":"Local: mod3_sol","url":"/Users/venkatasaiyaswanthbattu/Desktop/CP-NPTEL-CODES/mod3_sol.py","tests":[{"id":1659462355136,"input":"3\n5 5 8 8\n11 11 2 2\n1 6 1 6","output":"Case #1: 0\nCase #2: 1\nCase #3: 20"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/venkatasaiyaswanthbattu/Desktop/CP-NPTEL-CODES/mod3_sol.py","group":"local","local":true}
