@@ -16,7 +16,8 @@ for i in range(1,T+1):
         # b  >= phi * a
         # a <= (1 / phi) * b
         #a <= (phi - 1) * b
-            # a > b          b > a
+            # a > b          b > 
+            # used stricly greater than since 0 also implies losing
         if a1 > golden*b or (golden-1)*b > a2:  # all the values in given range forms winning pairs
             ans += (a2-a1+1)
         else:

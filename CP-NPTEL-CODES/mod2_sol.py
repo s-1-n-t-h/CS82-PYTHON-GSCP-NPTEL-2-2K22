@@ -1,15 +1,31 @@
-def construct(N,C,M):
-    #construct an array with elemets from M..N
-    #which, when reversesorted, incurs a cost of C
-    # Precondition: C is an attainable cost
-    if N == 1:
+# You can use this function to sanity check your answer:
+def cost(a):
+  n = len(a)
+  ans = 0
+  for j in range(n-1):
+      x = min(a[j:])
+      i = a.index(x)
+      ans += (i - j) + 1
+      a = a[:j] + a[j:i+1][::-1] + a[i+1:]
+
+  return ans
+
+
+def construct(N, C, M):
+    # Construct an array with elements from M...N
+    # which, when reversorted, incurs a cost of C.
+    # Precondition: C is an attainable cost.
+
+    if(N == 1):
+        # The base case is easy but important!
         return str(M)
     else:
-        if((C-1) >= N-2 and (C-1) <= N*(N-1)/2):
-            # if C-1 is with in valid bounds for N-1
-            # then place x at the begining and recurse directly
-            # Note that the minimum increase to M+1 in recursion
-            return str(M)+" "+construct(N-1,C-1,M+1)
+        if((C-1) >= N-2 and (C-1) <= N*(N-1)/2 - 1):
+            # If C-1 is within valid bounds for N-1,
+            # Then place X at the beginning and recurse directly.
+            # Note that the minimum increases to M+1 in recursion.
+
+            return str(M) + " " + construct(N-1, C-1, M+1)
 
         else:
             # If we are not in the "easy" case above,
@@ -35,19 +51,21 @@ def construct(N,C,M):
 
             ans = " ".join(newarr[:delta][::-1] + newarr[delta:])
             return ans
-             
-    
-if __name__ == "__main__":
-    T = int(input()) # no of test cases
-    for k in range(1,T+1):
-        # taking input for size & cost required
-        size_and_cost = list(map(int, input().split(" ")))
-        N = size_and_cost[0] #size
-        C = size_and_cost[1] #cost
-        if (C < N-1) or (C > N*(N+1)/2 -1):
-            #if required cost is above the upper bound or below the lower bound, such an array can't be permuted
-            print("Case #"+str(k)+": IMPOSSIBLE")
-        else:
-            #otherwisee invoke recursive mechanism
-            A = construct(N,C,1)
-            print("Case #"+str(k)+": "+str(A))
+
+
+T = int(input())
+
+for case in range(1, T+1):
+
+    N, C = list(map(int, input().strip().split()))
+
+    if C < N-1 or C > N*(N+1)/2 - 1:
+        # If C is not within the appropriate bounds,
+        # reject immediately:
+        print("Case #" + str(case) + ": IMPOSSIBLE")
+    else:
+
+        # Otheriwse, invoke the recursive mechanism
+        # for constructing an array with the appropriate cost:
+        A = construct(N, C, 1)
+        print("Case #" + str(case) + ": " + A)
